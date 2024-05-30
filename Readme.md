@@ -1,0 +1,2 @@
+#Project Architecture Overview
+This repository contains a .NET project structured according to the principles of Clean Architecture and CQRS (Command Query Responsibility Segregation). The architecture aims to promote separation of concerns, maintainability, and testability by organizing the code into distinct layers with clear dependencies.

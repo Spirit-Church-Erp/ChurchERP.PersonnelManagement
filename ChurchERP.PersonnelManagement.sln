@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C7853E8D-A2B3-460E-94EC-C9B3D42FB7B2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{658A53C8-6B91-4C61-B6DC-31A1777982CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Church.ERP.Domain", "Church.ERP.Domain\Church.ERP.Domain.csproj", "{EC4CAE23-1A34-4F67-90DE-7F68FDA4B8B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Church.ERP.Infrastructure", "Church.ERP.Infrastructure\Church.ERP.Infrastructure.csproj", "{A1BC1EBF-9A5C-41C2-9C91-289954B28359}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Church.ERP.API", "Church.ERP.API\Church.ERP.API.csproj", "{DB50F82A-F784-4C3D-A1B8-7C67AD77C3BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Church.ERP.Application", "Church.ERP.Application\Church.ERP.Application.csproj", "{5D96B637-9CD8-4339-86B0-E97E200DEBD1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D1EC6292-6B89-4930-AB7E-D00E30535B77}"
+	ProjectSection(SolutionItems) = preProject
+		Readme.md = Readme.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC4CAE23-1A34-4F67-90DE-7F68FDA4B8B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC4CAE23-1A34-4F67-90DE-7F68FDA4B8B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC4CAE23-1A34-4F67-90DE-7F68FDA4B8B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC4CAE23-1A34-4F67-90DE-7F68FDA4B8B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1BC1EBF-9A5C-41C2-9C91-289954B28359}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1BC1EBF-9A5C-41C2-9C91-289954B28359}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1BC1EBF-9A5C-41C2-9C91-289954B28359}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1BC1EBF-9A5C-41C2-9C91-289954B28359}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB50F82A-F784-4C3D-A1B8-7C67AD77C3BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB50F82A-F784-4C3D-A1B8-7C67AD77C3BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB50F82A-F784-4C3D-A1B8-7C67AD77C3BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB50F82A-F784-4C3D-A1B8-7C67AD77C3BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D96B637-9CD8-4339-86B0-E97E200DEBD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D96B637-9CD8-4339-86B0-E97E200DEBD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D96B637-9CD8-4339-86B0-E97E200DEBD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D96B637-9CD8-4339-86B0-E97E200DEBD1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EC4CAE23-1A34-4F67-90DE-7F68FDA4B8B1} = {C7853E8D-A2B3-460E-94EC-C9B3D42FB7B2}
+		{A1BC1EBF-9A5C-41C2-9C91-289954B28359} = {C7853E8D-A2B3-460E-94EC-C9B3D42FB7B2}
+		{DB50F82A-F784-4C3D-A1B8-7C67AD77C3BE} = {C7853E8D-A2B3-460E-94EC-C9B3D42FB7B2}
+		{5D96B637-9CD8-4339-86B0-E97E200DEBD1} = {C7853E8D-A2B3-460E-94EC-C9B3D42FB7B2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B6727A01-BD39-482F-A9DA-925F049626AA}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,6 @@
+@Church.ERP.API_HostAddress = http://localhost:5104
+
+GET {{Church.ERP.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
