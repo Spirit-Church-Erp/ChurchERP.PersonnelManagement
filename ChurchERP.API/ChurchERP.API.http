@@ -1,6 +1,0 @@
-@ChurchERP.API_HostAddress = http://localhost:5057
-
-GET {{ChurchERP.API_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
