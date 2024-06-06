@@ -1,6 +1,7 @@
 ﻿using Church.ERP.Application.Implementation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Church.ERP.API.Controllers
 {
@@ -16,7 +17,22 @@ namespace Church.ERP.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateApplicationUser([System.Web.Http.FromBody] CreateApplicationUser.Request command)
+        [Route("CreateApplicationUser")]
+        public async Task<IActionResult> CreateApplicationUser([FromBody] CreateApplicationUser.Request command)
+        {
+            if (ModelState.IsValid)
+            {
+                return Ok(await _mediator.Send(command));
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+        }
+
+        [HttpPost]
+        [Route("CreateApplicationAdminUser")]
+        public async Task<IActionResult> CreateApplicationAdminUser(CreateUserAsAdmin.Request command)
         {
             if (ModelState.IsValid)
             {

@@ -1,6 +1,7 @@
 using Church.ERP.Application;
 using Church.ERP.Application.Helpers;
 using Church.ERP.Application.Interfaces;
+using Church.ERP.Domain.AutoMapper;
 using Church.ERP.Domain.Entities;
 using Church.ERP.Infrastructure;
 using Church.ERP.Infrastructure.Context;
@@ -11,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -66,6 +68,12 @@ builder.Services.AddAuthentication(options =>
 });
 
 
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Church.ERP.API", Version = "v1" });
+
+    c.CustomSchemaIds(type => type.CustomSchema());
+});
 
 
 // Register UnitOfWork
@@ -74,6 +82,7 @@ builder.Services.AddScoped<IJWTConfiguration, JWTConfiguration>();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(MediatREntrypoint).Assembly));
 
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 var app = builder.Build();
 

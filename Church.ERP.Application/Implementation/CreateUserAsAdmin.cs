@@ -4,10 +4,15 @@ using Church.ERP.Domain.Entities;
 using Church.ERP.Domain.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Church.ERP.Application.Implementation
 {
-    public static class CreateApplicationUser
+    public static class CreateUserAsAdmin
     {
         public class Request : IRequest<ApiResponse<Result>>
         {
@@ -48,18 +53,20 @@ namespace Church.ERP.Application.Implementation
                     .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName))
                     .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Username));
 
-              });
+                });
 
                 _mapper = config.CreateMapper();
             }
             public async Task<ApiResponse<Result>> Handle(Request request, CancellationToken cancellationToken)
             {
-
                 ApplicationUser user = _mapper.Map<ApplicationUser>(request);
                 var result = await _userManager.CreateAsync(user, request.Password);
 
                 if (result.Succeeded)
                 {
+                    // Assign the "Admin" role to the user
+                    await _userManager.AddToRoleAsync(user, "Admin");
+
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     var token = _jwt.GenerateJwtToken(user);
                     var responseResult = new Result { Username = user.UserName, Email = user.Email, JwtToken = token };
@@ -69,6 +76,7 @@ namespace Church.ERP.Application.Implementation
                 var errors = result.Errors.Select(e => e.Description).ToList();
                 return new ApiResponse<Result>("Failed to create user", 400, errors);
             }
+
         }
     }
 }
