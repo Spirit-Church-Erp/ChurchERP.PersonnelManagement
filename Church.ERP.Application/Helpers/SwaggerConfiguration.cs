@@ -19,6 +19,10 @@ namespace Church.ERP.Application.Helpers
             {
                 return "CreateUserAsAdminRequest";
             }
+            if (type.FullName.Contains("GetAllRoles+Request"))
+            {
+                return "GetAllRolesRequest";
+            }
             return type.FullName; // default behavior
         }
     }

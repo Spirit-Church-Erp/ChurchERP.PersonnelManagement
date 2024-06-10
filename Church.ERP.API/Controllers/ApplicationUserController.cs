@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Church.ERP.API.Controllers
 {
@@ -33,6 +34,19 @@ namespace Church.ERP.API.Controllers
         [HttpPost]
         [Route("CreateApplicationAdminUser")]
         public async Task<IActionResult> CreateApplicationAdminUser(CreateUserAsAdmin.Request command)
+        {
+            if (ModelState.IsValid)
+            {
+                return Ok(await _mediator.Send(command));
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+        }
+
+        [HttpPost("GetAllRoles")]
+        public async Task<IActionResult> GetAllRoles(GetAllRoles.Request command)
         {
             if (ModelState.IsValid)
             {

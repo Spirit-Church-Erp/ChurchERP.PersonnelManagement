@@ -55,11 +55,40 @@ namespace Church.ERP.Application.Implementation
             public async Task<ApiResponse<Result>> Handle(Request request, CancellationToken cancellationToken)
             {
 
+                if (string.IsNullOrEmpty(request.Username))
+                {
+                    request.Username = request.Email.Split('@')[0];
+                }
+
+                ApplicationUser existingUserByEmail = await _userManager.FindByEmailAsync(request.Email);
+                if (existingUserByEmail != null)
+                {
+                    return new ApiResponse<Result>($"Email {existingUserByEmail.Email} already in use", 409);
+                }
+
+                // Check if the username is already in use
+                ApplicationUser existingUserByUsername = await _userManager.FindByNameAsync(request.Username);
+                if (existingUserByUsername != null)
+                {
+                    return new ApiResponse<Result>($"Username {existingUserByUsername.UserName} already in use", 409);
+                }
+
+                // Check password complexity (you can customize the validation rules as needed)
+                var passwordValidator = new PasswordValidator<ApplicationUser>();
+                var passwordValidationResult = await passwordValidator.ValidateAsync(_userManager, null, request.Password);
+                if (!passwordValidationResult.Succeeded)
+                {
+                    var error = passwordValidationResult.Errors.Select(e => e.Description).ToList();
+                    return new ApiResponse<Result>("Password does not meet complexity requirements", 400, error);
+                }
+
+                // Map the request to ApplicationUser entity
                 ApplicationUser user = _mapper.Map<ApplicationUser>(request);
                 var result = await _userManager.CreateAsync(user, request.Password);
 
                 if (result.Succeeded)
                 {
+                    // Optionally sign in the user after creation
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     var token = _jwt.GenerateJwtToken(user);
                     var responseResult = new Result { Username = user.UserName, Email = user.Email, JwtToken = token };

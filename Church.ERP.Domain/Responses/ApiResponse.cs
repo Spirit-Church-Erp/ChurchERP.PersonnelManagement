@@ -35,5 +35,12 @@ namespace Church.ERP.Domain.Responses
             Data = default;
             Errors = errors;
         }
+        public ApiResponse(string message, int statusCode)
+        {
+            Success = false;
+            Message = message;
+            StatusCode = statusCode;
+          
+        }
     }
 }
